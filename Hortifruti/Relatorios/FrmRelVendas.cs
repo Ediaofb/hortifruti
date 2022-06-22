@@ -71,15 +71,16 @@ namespace Hortifruti.Relatorios
 
         private void btn_consult_rel_vendas_Click(object sender, EventArgs e)
         {
-            string query_vendas = @"SELECT * FROM VENDAS WHERE data BETWEEN #" + dateTimePicker1.Value + "AND" + dateTimePicker2.Value + "#";//Consulta
+            string query_vendas = @"SELECT * FROM VENDAS WHERE data BETWEEN #" + dateTimePicker1.Value + "AND" + dateTimePicker2.Value + "#";
+            //Consulta a venda por intervalo de data
 
-            Banco.ConexaoBanco();
-            Banco.consulta(query_vendas);
+            Banco.ConexaoBanco(); //Conecta no banco
+            Banco.consulta(query_vendas); //Realiza a consulta
 
-            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.DataSources.Clear(); //Limpa o datasource do datagridviewer
             ReportDataSource rds = new ReportDataSource("dataset_tbl_Vendas", Banco.consulta(query_vendas));//preenchendo o datasource com os dados da consulta ao banco.
             reportViewer1.LocalReport.DataSources.Add(rds);
-            reportViewer1.RefreshReport();
+            reportViewer1.RefreshReport();//Atualiza o datagridviewer
         }
     }
 }
