@@ -1,6 +1,5 @@
 ﻿using Microsoft.Reporting.WinForms;
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -71,7 +70,7 @@ namespace Hortifruti.Relatorios
 
         private void btn_consult_rel_vendas_Click(object sender, EventArgs e)
         {
-            string query_vendas = @"SELECT * FROM VENDAS WHERE data BETWEEN #" + dateTimePicker1.Value + "AND" + dateTimePicker2.Value + "#";
+            string query_vendas = @"SELECT * FROM VENDAS WHERE data BETWEEN " + dateTimePicker1.Value + "AND " + dateTimePicker2.Value + " AND Cliente = " +cb_clientes.Text;
             //Consulta a venda por intervalo de data
 
             Banco.ConexaoBanco(); //Conecta no banco
